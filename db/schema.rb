@@ -58,8 +58,7 @@ ActiveRecord::Schema.define(version: 20160421215952) do
   add_index "pets", ["gender"], name: "index_pets_on_gender", using: :btree
   add_index "pets", ["size"], name: "index_pets_on_size", using: :btree
 
-<<<<<<< HEAD
-=======
+
   create_table "preferences", force: :cascade do |t|
     t.string   "animal_type"
     t.string   "size_preference"
@@ -94,5 +93,4 @@ ActiveRecord::Schema.define(version: 20160421215952) do
     t.datetime "updated_at", null: false
   end
 
->>>>>>> master
 end
