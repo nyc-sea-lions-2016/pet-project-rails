@@ -1,28 +1,37 @@
-== README
+== Working Title: PET PROJECT 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+User Stories:
+* User by default sees one animal when they open the app (name and image of animal only)
+* User by default should only see animals within a certain radius of where they are
+* User should be able to swipe left or right on an image of a pet
+* When a user swipes right, it adds the animal to their favorites list
+* When a user clicks an animal image, it loads an extended profile (age, breeds, shots, etc)
+* User can see favorite animals in profile
+* User can delete and share favorite animals
+* User can see a map of nearby animal shelters
+* User can get directions to the shelters of their favorited animals
+* User can call or email a shelter directly from the app
+* User can get information on how to actually adopt a pet (paperwork, etc)
 
-Things you may want to cover:
+Goals:
+* Show users images of adoptable pets
+* Encourage user to actually adopt the animal within a short time of using the app
+* Become the one stop app for animal adoption
 
-* Ruby version
+Title Ideas:
+* Pet Finder
+* Next Best Friend
+* New Best Friend
+* Petflix & Chill
 
-* System dependencies
+Routes:
+* Homepage 
+* Settings (User edit)
+* Favorites (User show)
+* Details (Pet show)
+* POST -- swipe right (Pet create)
+* POST -- delete favorite (Pet delete)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Models:
+* User [:create, :edit, :delete, :show]
+* Pet 
