@@ -28,3 +28,16 @@ Pet.create(
   contact_email: "fj@example.com",
   contact_phone: 1234567891
 )
+
+Preference.create(
+  category: [
+    {
+    size: "S",
+    animal: "dog",
+    breed: "pitt",
+    sex: "F",
+    location: "New York"
+    }
+  ],
+  
+)
