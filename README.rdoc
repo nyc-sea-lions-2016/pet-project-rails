@@ -37,4 +37,5 @@ Models:
 * Pet 
 
 Schema image:
+image_tag('Pet_app_schema.png')
 ![pet_app_schema](/app/assets/images/Pet_app_schema.png "Schema design")
