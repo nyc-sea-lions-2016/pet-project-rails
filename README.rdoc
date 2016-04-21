@@ -35,3 +35,6 @@ Routes:
 Models:
 * User [:create, :edit, :delete, :show]
 * Pet 
+
+Schema image:
+<img src=../../images/Pet_app_schema.png>
