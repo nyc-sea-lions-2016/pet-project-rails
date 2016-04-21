@@ -1,5 +1,5 @@
 json.array!@pets do |pet|
-  json.id pet.
+  json.id pet.id
   json.name pet.name
   json.animal_type pet.animalType
   json.description pet.description
