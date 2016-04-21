@@ -30,5 +30,14 @@ Pet.create(
 )
 
 Preference.create(
-  category: [""]
+  category: [
+    {
+    size: "S",
+    animal: "dog",
+    breed: "pitt",
+    sex: "F",
+    location: "New York"
+    }
+  ],
+  
 )
