@@ -37,4 +37,8 @@ Models:
 * Pet 
 
 Schema image:
-![pet_app_schema](/app/assets/images/Pet_app_schema.png "Schema design")
+![pet_app_schema](/app/assets/images/Pet_schema2.png "Schema design")
+* let's see if rails image works for inline display...
+image_tag('Pet_schema2.png')
+
+
