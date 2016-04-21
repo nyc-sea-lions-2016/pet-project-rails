@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  get '/index' => 'welcome#index'
 
   resources :pets, only: [:create, :delete, :show, :index]
   resources :users, only: [:show, :edit, :update]
