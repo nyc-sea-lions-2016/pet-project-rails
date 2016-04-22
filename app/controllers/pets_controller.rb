@@ -1,11 +1,16 @@
 class PetsController < ApplicationController
 
-def show
+	def create
+		# This may not work, we'll dig around later
+		@pet = Pet.create(params[:pet])
+	end
 
-	@pet = Pet.find(params[:id])
+	def show
+		@pet = Pet.find(params[:id])
+	end
 
-	
-
-end
-
+	def delete
+		@pet = Pet.find(params[:id])
+		@pet.delete
+	end
 end
