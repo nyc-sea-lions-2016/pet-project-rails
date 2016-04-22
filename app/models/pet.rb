@@ -1,5 +1,6 @@
 class Pet < ActiveRecord::Base
 	has_many :favorites
+	has_many :photos
 	has_many :users, through: :favorites
 	after_initialize :init
 
@@ -25,4 +26,3 @@ class Pet < ActiveRecord::Base
 		self.contact_phone ||= "No contact phone number on record"
 	end
 end
-
