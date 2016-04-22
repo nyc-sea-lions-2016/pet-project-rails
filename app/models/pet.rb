@@ -6,7 +6,7 @@ class Pet < ActiveRecord::Base
 	validates :petfinder_id, :name, :animal, :description, :age, :size, :gender, :breed, :altered, :shots, :special_needs, :contact_city, :contact_zip, :contact_state, :contact_name, :contact_email, :contact_phone, { presence: true }
 
 
-# init validates everything but petfinder_id & animal(type)
+# init validates everything but petfinder_id & animal(type) & images
 	def init
 		self.name ||= "Please give me a name and a home!"
 		self.description ||= "No description given"
