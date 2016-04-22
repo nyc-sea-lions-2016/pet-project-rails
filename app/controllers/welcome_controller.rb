@@ -6,32 +6,35 @@ class WelcomeController < ApplicationController
 
     if status_code == "100"
 
+      pet = potential_pet["petfinder"]["pet"]
+
       #BASIC INFO
-      petfinder_id =  potential_pet["petfinder"]["pet"]["id"]["$t"]
-      name = potential_pet["petfinder"]["pet"]["name"]["$t"]
-      animal = potential_pet["petfinder"]["pet"]["animal"]['$t']
-      description = potential_pet["petfinder"]["pet"]["description"]["$t"]
-      age = potential_pet["petfinder"]["pet"]["age"]["$t"]
-      size = potential_pet["petfinder"]["pet"]["size"]["$t"]
-      gender = potential_pet["petfinder"]["pet"]["sex"]["$t"]
-      breed = potential_pet["petfinder"]["pet"]["breeds"]["breed"]["$t"]
+      petfinder_id =  pet["id"]["$t"]
+      name = pet.has_key?("name") ? pet["name"]["$t"] : ''
+      animal = pet.has_key?("animal") ? pet["animal"]['$t'] : ''
+      description = pet.has_key?("description") ? pet["description"]["$t"] : ''
+      age = pet.has_key?("age") ? pet["age"]["$t"] : ''
+      size = pet.has_key?("size") ? pet["size"]["$t"] : ''
+      gender = pet.has_key?("sex") ? pet["sex"]["$t"] : ''
+      breed = pet.has_key?("breeds") ? pet["breeds"]["breed"]["$t"] : ''
 
       #OPTIONS
-      options = get_options(potential_pet["petfinder"]["pet"]["options"]["option"])
+      options = get_options(pet["options"]["option"])
         altered = options.include?('altered')? true : false
         shots = options.include?('hasShots')? true : false
         special_needs = options.select{|option| option != 'altered' && option != 'hasShots'}.join(', ')
 
       #LOCATION
-      contact_city = potential_pet["petfinder"]["pet"]["contact"]["city"]["$t"]
-      contact_zip = potential_pet["petfinder"]["pet"]["contact"]["zip"]["$t"]
-      contact_state = potential_pet["petfinder"]["pet"]["contact"]["state"]["$t"]
-      contact_name = potential_pet["petfinder"]["pet"]["contact"]["name"]["$t"]
-      contact_email = potential_pet["petfinder"]["pet"]["contact"]["email"]["$t"]
-      contact_phone = potential_pet["petfinder"]["pet"]["contact"]["phone"]["$t"]
+      pet_contact = pet["contact"]
+        contact_city = pet_contact.has_key?("city") ? pet_contact["city"]["$t"] : ''
+        contact_zip = pet_contact.has_key?("zip") ? pet_contact["zip"]["$t"] : ''
+        contact_state = pet_contact.has_key?("state") ? pet_contact["state"]["$t"] : ''
+        contact_name = pet_contact.has_key?("name") ? pet_contact["name"]["$t"] : ''
+        contact_email = pet_contact.has_key?("email") ? pet_contact["email"]["$t"] : ''
+        contact_phone = pet_contact.has_key?("phone") ? pet_contact["phone"]["$t"] : ''
 
       #FIRST PHOTO
-      photo_url = potential_pet["petfinder"]["pet"]["media"]["photos"]["photo"][0]['$t']
+      photo_url = pet.has_key?("media") ? pet["media"]["photos"]["photo"][0]['$t'] : 'http://www.iconsdownload.net/icons/256/1588-paw-print-outline-icon.png'
 
       @potential_pet = Pet.new({
           petfinder_id: petfinder_id,
@@ -46,7 +49,7 @@ class WelcomeController < ApplicationController
           shots: shots,
           special_needs: special_needs
         })
-      @photo = Photo.new({photo_url: photo, pet_id: @potential_pet.id})
+      @photo = Photo.new({url: photo_url, pet_id: @potential_pet.id})
 
     else
       error_msg = potential_pet["petfinder"]["header"]["status"]["message"]
