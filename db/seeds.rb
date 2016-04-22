@@ -7,7 +7,7 @@ Pet.create!(
   name: "alyssa",
   animal: "dog",
   description: "loving",
-  age: 1,
+  age: '1',
   size: "small",
   gender: "female",
   breed: "german short-hair-pointer",
