@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421215952) do
+ActiveRecord::Schema.define(version: 20160421225242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20160421215952) do
     t.string  "size",          null: false
     t.string  "gender",        null: false
     t.string  "breed",         null: false
-    t.string  "photos",        null: false
     t.string  "altered",       null: false
     t.string  "shots",         null: false
     t.string  "special_needs", null: false
@@ -56,23 +55,21 @@ ActiveRecord::Schema.define(version: 20160421215952) do
   add_index "pets", ["gender"], name: "index_pets_on_gender", using: :btree
   add_index "pets", ["size"], name: "index_pets_on_size", using: :btree
 
+  create_table "photos", force: :cascade do |t|
+    t.integer  "pet_id"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "photos", ["pet_id"], name: "index_photos_on_pet_id", using: :btree
+
   create_table "preferences", force: :cascade do |t|
-    t.string   "animal_type"
-    t.string   "size_preference"
-    t.string   "age"
-    t.string   "breed"
-    t.string   "sex"
-    t.string   "location"
+    t.string   "preference_desc"
+    t.string   "category"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
-
-  add_index "preferences", ["age"], name: "index_preferences_on_age", using: :btree
-  add_index "preferences", ["animal_type"], name: "index_preferences_on_animal_type", using: :btree
-  add_index "preferences", ["breed"], name: "index_preferences_on_breed", using: :btree
-  add_index "preferences", ["location"], name: "index_preferences_on_location", using: :btree
-  add_index "preferences", ["sex"], name: "index_preferences_on_sex", using: :btree
-  add_index "preferences", ["size_preference"], name: "index_preferences_on_size_preference", using: :btree
 
   create_table "preferences_users", force: :cascade do |t|
     t.integer  "user_id",       null: false
