@@ -16,7 +16,20 @@ class WelcomeController < ApplicationController
       age = pet.has_key?("age") ? pet["age"]["$t"] : ''
       size = pet.has_key?("size") ? pet["size"]["$t"] : ''
       gender = pet.has_key?("sex") ? pet["sex"]["$t"] : ''
-      breed = pet.has_key?("breeds") ? pet["breeds"]["breed"]["$t"] : ''
+
+      if pet.has_key?("breeds")
+        if pet["breeds"].has_key?("breed")
+          if pet["breeds"]["breed"].is_a?(Array)
+            breed = pet["breeds"]["breed"][0]["$t"]
+          else
+            breed = pet["breeds"]["breed"]["$t"]
+          end
+        else
+          breed=''
+        end
+      else
+        breed = ''
+      end
 
       #OPTIONS
       options = get_options(pet["options"]["option"])
@@ -50,7 +63,6 @@ class WelcomeController < ApplicationController
           special_needs: special_needs
         })
       @photo = Photo.new({url: photo_url, pet_id: @potential_pet.id})
-
     else
       error_msg = potential_pet["petfinder"]["header"]["status"]["message"]
     end
