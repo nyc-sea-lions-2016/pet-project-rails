@@ -1,17 +1,9 @@
 class WelcomeController < ApplicationController
 
-
-
-  # API REQUEST CONSTANTS
-  KEY = ENV['PET_FINDER_KEY']
-  DEFAULT_LOCATION = '10005'
-  OUTPUT = 'full'
-  FORMAT = 'json'
-  # ANIMAL = 'cat'
-
   def index
     potential_pet = pet_finder_request
     status_code = potential_pet["petfinder"]["header"]["status"]["code"]["$t"]
+
     if status_code == "100"
 
       #BASIC INFO
