@@ -1,11 +1,5 @@
 class WelcomeController < ApplicationController
 
-  # API REQUEST CONSTANTS
-  KEY = ENV['PET_FINDER_KEY']
-  DEFAULT_LOCATION = '10005'
-  OUTPUT = 'full'
-  FORMAT = 'json'
-
   def index
     potential_pet = pet_finder_request
     status_code = potential_pet["petfinder"]["header"]["status"]["code"]["$t"]
@@ -13,7 +7,14 @@ class WelcomeController < ApplicationController
     if status_code == "100"
       binding.pry
 
-      options = [potential_pet["petfinder"]["pet"]["options"]]
+      options_obj = potential_pet["petfinder"]["pet"]["options"]["option"]
+      options = []
+      if options_obj.length > 0
+        options_obj.each do |option|
+          options << option['$t']
+        end
+      end
+
       # expect something to be passed through no matter what. set up or statements to handle this
       petfinder_id =  potential_pet["petfinder"]["pet"]["id"]["$t"]
       name = potential_pet["petfinder"]["pet"]["name"]["$t"]
@@ -25,9 +26,9 @@ class WelcomeController < ApplicationController
       breed = potential_pet["petfinder"]["pet"]["breeds"]["breed"]["$t"]
 
 
-      altered =
-      shots =
-      special_needs =
+      altered = true if options.include?('altered')
+      shots = true if options.include?('hasShots')
+      special_needs = 
       contact_city =
       contact_zip =
       contact_state =
@@ -42,6 +43,13 @@ class WelcomeController < ApplicationController
   end
 
   private
+
+  # API REQUEST CONSTANTS
+
+  KEY = ENV['PET_FINDER_KEY']
+  DEFAULT_LOCATION = '10005'
+  OUTPUT = 'full'
+  FORMAT = 'json'
 
   def pet_finder_request
     request_url = 'http://api.petfinder.com/pet.getRandom?key=' + KEY + '&location=' + DEFAULT_LOCATION + '&output=' + OUTPUT + '&format=' + FORMAT
