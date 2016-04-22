@@ -29,5 +29,5 @@ preference_desc = [["S", "M", "L"], ["dog", "cat"], ["Affenpinscher", "American 
 
 
 categories.each_with_index do |category, index|
-  Preference.create!({category: category, preference_desc: preference_desc[index].sample})
+  Preference.create!({category: category, preference_desc: preference_desc[index]})
 end
