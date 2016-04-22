@@ -14,6 +14,6 @@ class UsersController < ApplicationController
     # set pets to array
     # for when we have current_user method
     @user = User.includes(:pets).find(current_user)
-
+    
   end
 end
