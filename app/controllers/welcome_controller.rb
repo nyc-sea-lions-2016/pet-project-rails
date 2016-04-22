@@ -5,13 +5,11 @@ class WelcomeController < ApplicationController
   DEFAULT_LOCATION = '10005'
   OUTPUT = 'full'
   FORMAT = 'json'
-
+  # ANIMAL = 'cat'
   def index
     potential_pet = pet_finder_request
     status_code = potential_pet["petfinder"]["header"]["status"]["code"]["$t"]
-
     if status_code == "100"
-      binding.pry
 
       options = [potential_pet["petfinder"]["pet"]["options"]]
       # expect something to be passed through no matter what. set up or statements to handle this
