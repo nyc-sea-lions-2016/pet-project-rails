@@ -12,6 +12,8 @@ class WelcomeController < ApplicationController
 
     if status_code == "100"
       binding.pry
+
+      options = [potential_pet["petfinder"]["pet"]["options"]]
       # expect something to be passed through no matter what. set up or statements to handle this
       petfinder_id =  potential_pet["petfinder"]["pet"]["id"]["$t"]
       name = potential_pet["petfinder"]["pet"]["name"]["$t"]
@@ -21,6 +23,8 @@ class WelcomeController < ApplicationController
       size = potential_pet["petfinder"]["pet"]["size"]["$t"]
       gender = potential_pet["petfinder"]["pet"]["sex"]["$t"]
       breed = potential_pet["petfinder"]["pet"]["breeds"]["breed"]["$t"]
+
+
       altered =
       shots =
       special_needs =

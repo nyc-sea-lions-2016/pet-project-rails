@@ -12,7 +12,7 @@ User.create(
 
 Pet.create(
   name: "alyssa",
-  animal_type: "dog",
+  animal: "dog",
   description: "loving",
   age: 1,
   size: "small",
@@ -28,3 +28,16 @@ Pet.create(
   contact_email: "fj@example.com",
   contact_phone: 1234567891
 )
+
+# Preference.create(
+#   category: [
+#     {
+#     size: "S",
+#     animal: "dog",
+#     breed: "pitt",
+#     sex: "F",
+#     location: "New York"
+#     }
+#   ],
+  
+# )
