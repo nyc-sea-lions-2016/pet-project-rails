@@ -6,11 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(
+User.create!(
   name: "fj"
 )
 
 Pet.create!(
+  petfinder_id: 1,
   name: "alyssa",
   animal: "dog",
   description: "loving",
@@ -30,6 +31,7 @@ Pet.create!(
   petfinder_id: 1
 )
 
+
 categories = ["size","animal", "breed", "sex"]
 preference_desc = [["S", "M", "L"], ["dog", "cat"], ["Affenpinscher", "American Curl", "Afghan Hound", "Abyssinian"], ["M", "F"]]
 
@@ -37,3 +39,4 @@ preference_desc = [["S", "M", "L"], ["dog", "cat"], ["Affenpinscher", "American 
 categories.each_with_index do |category, index|
   Preference.create!({category: category, preference_desc: preference_desc[index].sample})
 end
+
