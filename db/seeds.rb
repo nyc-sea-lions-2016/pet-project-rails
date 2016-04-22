@@ -10,7 +10,8 @@ User.create(
   name: "fj"
 )
 
-Pet.create(
+Pet.create!(
+  petfinder_id: 1
   name: "alyssa",
   animal: "dog",
   description: "loving",
