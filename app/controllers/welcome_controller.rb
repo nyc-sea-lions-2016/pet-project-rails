@@ -13,15 +13,14 @@ class WelcomeController < ApplicationController
     if status_code == "100"
       binding.pry
       # expect something to be passed through no matter what. set up or statements to handle this
-      petfinder_id =
-      name =
-      animal =
-      description =
-      age =
-      size =
-      gender =
-      breed =
-      photos =
+      petfinder_id =  potential_pet["petfinder"]["pet"]["id"]["$t"]
+      name = potential_pet["petfinder"]["pet"]["name"]["$t"]
+      animal = potential_pet["petfinder"]["pet"]["animal"]['$t']
+      description = potential_pet["petfinder"]["pet"]["description"]["$t"]
+      age = potential_pet["petfinder"]["pet"]["age"]["$t"]
+      size = potential_pet["petfinder"]["pet"]["size"]["$t"]
+      gender = potential_pet["petfinder"]["pet"]["sex"]["$t"]
+      breed = potential_pet["petfinder"]["pet"]["breeds"]["breed"]["$t"]
       altered =
       shots =
       special_needs =
@@ -32,6 +31,7 @@ class WelcomeController < ApplicationController
       contact_email =
       contact_phone =
       @potential_pet = Pet.new({})
+      @photos = #pass in photo urls Photo.new({})
     else
       error_msg = potential_pet["petfinder"]["header"]["status"]["message"]
     end
