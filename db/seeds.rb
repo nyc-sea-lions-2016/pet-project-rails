@@ -6,12 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(
+User.create!(
   name: "fj"
 )
 
 Pet.create!(
-  petfinder_id: 1
+  petfinder_id: 1,
   name: "alyssa",
   animal: "dog",
   description: "loving",
@@ -40,5 +40,4 @@ Pet.create!(
 #     location: "New York"
 #     }
 #   ],
-  
 # )
