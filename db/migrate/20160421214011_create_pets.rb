@@ -9,7 +9,6 @@ class CreatePets < ActiveRecord::Migration
     	t.string :size, null: false, index: true
     	t.string :gender, null: false, index: true
     	t.string :breed, null: false, index: true
-    	t.string :photos, null: false
     	t.string :altered, null: false
     	t.string :shots, null: false
     	t.string :special_needs, null: false

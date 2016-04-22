@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20160421225242) do
     t.string  "size",          null: false
     t.string  "gender",        null: false
     t.string  "breed",         null: false
-    t.string  "photos",        null: false
     t.string  "altered",       null: false
     t.string  "shots",         null: false
     t.string  "special_needs", null: false

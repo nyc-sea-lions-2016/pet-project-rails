@@ -10,7 +10,7 @@ User.create(
   name: "fj"
 )
 
-Pet.create(
+Pet.create!(
   name: "alyssa",
   animal: "dog",
   description: "loving",
@@ -26,7 +26,8 @@ Pet.create(
   contact_zip: "11111",
   contact_name: "FJ",
   contact_email: "fj@example.com",
-  contact_phone: 1234567891
+  contact_phone: 1234567891,
+  petfinder_id: 1
 )
 
 categories = ["size","animal", "breed", "sex"]
@@ -34,7 +35,5 @@ preference_desc = [["S", "M", "L"], ["dog", "cat"], ["Affenpinscher", "American 
 
 
 categories.each_with_index do |category, index|
-  # preference_desc.each_with_index do |desc, index|
-    Preference.create!({category: category, preference_desc: preference_desc[index].sample})
-  # end
+  Preference.create!({category: category, preference_desc: preference_desc[index].sample})
 end
