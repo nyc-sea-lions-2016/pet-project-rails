@@ -5,12 +5,12 @@ class WelcomeController < ApplicationController
   DEFAULT_LOCATION = '10005'
   OUTPUT = 'full'
   FORMAT = 'json'
-
+  # ANIMAL = 'cat'
   def index
     potential_pet = pet_finder_request
     status_code = potential_pet["petfinder"]["header"]["status"]["code"]["$t"]
-
     if status_code == "100"
+      binding.pry
       @potential_pet = Pet.new({})
     else
       error_msg = potential_pet["petfinder"]["header"]["status"]["message"]
