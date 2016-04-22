@@ -29,7 +29,12 @@ Pet.create(
   contact_phone: 1234567891
 )
 
-Preference.create(
-  category: ["size","animal", "breed", "sex"],
-  preference_desc: ["S", "M", "L"], ["dog", "cat"], ["Affenpinscher", "American Curl", "Afghan Hound", "Abyssinian"], ["M", "F"]
-)
+categories = ["size","animal", "breed", "sex"]
+preference_desc = [["S", "M", "L"], ["dog", "cat"], ["Affenpinscher", "American Curl", "Afghan Hound", "Abyssinian"], ["M", "F"]]
+
+
+categories.each_with_index do |category, index|
+  # preference_desc.each_with_index do |desc, index|
+    Preference.create!({category: category, preference_desc: preference_desc[index].sample})
+  # end
+end
