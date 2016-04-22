@@ -12,7 +12,7 @@ User.create(
 
 Pet.create(
   name: "alyssa",
-  animal_type: "dog",
+  animal: "dog",
   description: "loving",
   age: 1,
   size: "small",
@@ -32,4 +32,4 @@ Pet.create(
 Preference.create(
   category: ["size","animal", "breed", "sex"],
   preference_desc: ["S", "M", "L"], ["dog", "cat"], ["Affenpinscher", "American Curl", "Afghan Hound", "Abyssinian"], ["M", "F"]
-  )
+)
