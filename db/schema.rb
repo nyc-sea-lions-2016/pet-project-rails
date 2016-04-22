@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421225242) do
+ActiveRecord::Schema.define(version: 20160422014207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20160421225242) do
     t.string  "size",          null: false
     t.string  "gender",        null: false
     t.string  "breed",         null: false
-    t.string  "altered",       null: false
-    t.string  "shots",         null: false
+    t.boolean "altered",       null: false
+    t.boolean "shots",         null: false
     t.string  "special_needs", null: false
     t.string  "contact_city",  null: false
     t.string  "contact_zip",   null: false
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20160421225242) do
   add_index "pets", ["size"], name: "index_pets_on_size", using: :btree
 
   create_table "photos", force: :cascade do |t|
-    t.integer  "pet_id"
-    t.string   "url"
+    t.integer  "pet_id",     null: false
+    t.string   "url",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
