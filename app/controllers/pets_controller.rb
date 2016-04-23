@@ -1,8 +1,10 @@
 class PetsController < ApplicationController
 
 	def create
-		# This may not work, we'll dig around later
-		@pet = Pet.create(params[:pet])
+		@pet = Pet.new(pet_params)
+		if @pet.save
+			favorite = Favorite.create(pet_id: @pet.id, user_id: 1)
+		end
 	end
 
 	def show
@@ -13,4 +15,11 @@ class PetsController < ApplicationController
 		@pet = Pet.find(params[:id])
 		@pet.delete
 	end
+
+	private
+
+	def pet_params
+		params.require(:pet).permit(:petfinder_id, :name, :animal, :description, :age, :size, :gender, :breed, :altered, :shots, :special_needs, :contact_city, :contact_zip, :contact_state, :contact_name, :contact_email, :contact_phone)
+	end
+
 end
