@@ -47,7 +47,7 @@ class WelcomeController < ApplicationController
         contact_phone = pet_contact.has_key?("phone") ? pet_contact["phone"]["$t"] : ''
 
       #FIRST PHOTO
-      photo_url = pet.has_key?("media") && pet["media"].has_key?("photos") ? pet["media"]["photos"]["photo"][0]['$t'] : 'http://www.iconsdownload.net/icons/256/1588-paw-print-outline-icon.png'
+      photo_url = pet.has_key?("media") && pet["media"].has_key?("photos") ? pet["media"]["photos"]["photo"][3]['$t'] : 'http://www.iconsdownload.net/icons/256/1588-paw-print-outline-icon.png'
 
       @potential_pet = Pet.new({
           petfinder_id: petfinder_id,
