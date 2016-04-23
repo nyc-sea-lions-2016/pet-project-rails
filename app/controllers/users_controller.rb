@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.includes(:pets).find(current_user)
+    @photos = @user.pets.includes(:photos).find(current_pet)
   end
 
   private
