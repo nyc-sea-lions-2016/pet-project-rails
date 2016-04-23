@@ -15,9 +15,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:pets).find(current_user)
-    @photos = @user.pets.includes(:photos)
-    binding.pry
+    @pets = User.find(current_user).pets
+    # @pets = Pet.includes(:photos).find_by(user_id: current_user.id)
   end
 
   private
