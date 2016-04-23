@@ -83,10 +83,8 @@ class WelcomeController < ApplicationController
 
   def get_options(options_obj)
     options = []
-    p options_obj
     if options_obj && options_obj.length > 1
       options_obj.each do |option|
-        p option
         options << option['$t']
       end
     elsif options_obj && options_obj.length == 1
