@@ -4,7 +4,7 @@ class Pet < ActiveRecord::Base
 	has_many :users, through: :favorites
 	after_initialize :init
 
-	validates :petfinder_id, :name, :animal, :description, :age, :size, :gender, :breed, :special_needs, :contact_city, :contact_zip, :contact_state, :contact_name, :contact_email, :contact_phone, { presence: true }
+	validates :petfinder_id, :name, :animal, :description, :age, :size, :gender, :breed, :contact_city, :contact_zip, :contact_state, :contact_name, :contact_email, :contact_phone, { presence: true }
 
 
 # init validates everything but petfinder_id & animal(type) & images
