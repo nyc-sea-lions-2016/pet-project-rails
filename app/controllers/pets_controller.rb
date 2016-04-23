@@ -5,8 +5,8 @@ class PetsController < ApplicationController
 		photo = response["pet"]["url"]
 		response["pet"].delete('url')
 		@pet = Pet.new(response["pet"])
-		@photo = Photo.new({url: photo, pet_id: @pet.id})
 		if @pet.save
+			@photo = Photo.create({url: photo, pet_id: @pet.id})
 			favorite = Favorite.create(pet_id: @pet.id, user_id: current_user.id)
 		end
 	end
