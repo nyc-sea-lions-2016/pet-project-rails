@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # @user = User.find(params[:id])
     @user = User.find(current_user)
     if @user.update_attributes(user_params)
       # show a message in native (flash)
@@ -17,7 +16,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.includes(:pets).find(current_user)
-    @photos = @user.pets.includes(:photos).find(current_pet)
+    @photos = @user.pets.includes(:photos)
+    binding.pry
   end
 
   private

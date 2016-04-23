@@ -18,8 +18,7 @@ json.array!@user.pets do |pet|
   json.contact_phone pet.contact_phone
 end
 
-json.array!@photos.photos do |photo|
-  json.url photo.url
-  json.pet_id photo.pet_id
+json.array!@photos do |pet|
+  json.url pet.photos[0].url
+  json.pet_id pet.photos[0].pet_id
 end
-# users/show.json
