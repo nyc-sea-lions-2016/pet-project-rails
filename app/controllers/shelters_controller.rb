@@ -6,8 +6,8 @@ class SheltersController < ApplicationController
     @shelters = []
     shelters_list["petfinder"]["shelters"]["shelter"].each do |shelter|
       name = shelter["name"]["$t"]
-      longitude = shelter["longitude"]["$t"]
-      latitude = shelter["latitude"]["$t"]
+      longitude = shelter["longitude"]["$t"].to_f
+      latitude = shelter["latitude"]["$t"].to_f
       @shelters << Shelter.new({name: name, longitude: longitude, latitude: latitude})
     end
     @shelters

@@ -1,8 +1,8 @@
 class CreateShelters < ActiveRecord::Migration
   def change
     create_table :shelters do |t|
-      t.string :longitude
-      t.string :latitude
+      t.decimal :longitude
+      t.decimal :latitude
       t.string :name
       t.string :email
       t.string :city
