@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :pets, only: [:create, :delete, :show]
   resources :users, only: [:show, :edit, :update]
   resources :favorites, only: [:index, :create, :delete]
+  resources :shelters, only: [:index]
 
 end
