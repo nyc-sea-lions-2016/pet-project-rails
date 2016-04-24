@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422014207) do
+ActiveRecord::Schema.define(version: 20160424142809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,17 @@ ActiveRecord::Schema.define(version: 20160422014207) do
 
   add_index "preferences_users", ["preference_id"], name: "index_preferences_users_on_preference_id", using: :btree
   add_index "preferences_users", ["user_id"], name: "index_preferences_users_on_user_id", using: :btree
+
+  create_table "shelters", force: :cascade do |t|
+    t.decimal "longitude"
+    t.decimal "latitude"
+    t.string  "name"
+    t.string  "email"
+    t.string  "city"
+    t.string  "zip_code"
+    t.string  "petfinder_id"
+    t.string  "phone"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name",       null: false
