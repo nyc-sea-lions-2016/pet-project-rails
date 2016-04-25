@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @user.update(preferred_location: response["location"])
     end
     if response["searchRadius"]
-      @user.update(preferred_search_radius: response.preferred_search_radius)
+      @user.update(preferred_search_radius: response["searchRadius"].to_i)
     end
   end
 
