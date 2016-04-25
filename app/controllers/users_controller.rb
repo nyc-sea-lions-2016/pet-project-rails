@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def create
-
+    @user = User.create!(response["user"])
   end
 
   def edit
