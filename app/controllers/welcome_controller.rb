@@ -81,6 +81,7 @@ class WelcomeController < ApplicationController
           contact_city = pet_contact.has_key?("city") ? pet_contact["city"]["$t"] : ''
           contact_zip = pet_contact.has_key?("zip") ? pet_contact["zip"]["$t"] : ''
           contact_state = pet_contact.has_key?("state") ? pet_contact["state"]["$t"] : ''
+          contact_name = pet_contact.has_key?("name") ? pet_contact["name"]["$t"] : ''
           contact_email = pet_contact.has_key?("email") ? pet_contact["email"]["$t"] : ''
           contact_phone = pet_contact.has_key?("phone") ? pet_contact["phone"]["$t"] : ''
 

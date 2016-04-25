@@ -27,23 +27,23 @@ ActiveRecord::Schema.define(version: 20160424142809) do
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "pets", force: :cascade do |t|
-    t.integer "petfinder_id",  null: false
-    t.string  "name",          null: false
-    t.string  "animal",        null: false
-    t.text    "description",   null: false
-    t.string  "age",           null: false
-    t.string  "size",          null: false
-    t.string  "gender",        null: false
-    t.string  "breed",         null: false
-    t.string  "altered",       null: false
-    t.string  "shots",         null: false
-    t.string  "special_needs", null: false
-    t.string  "contact_city",  null: false
-    t.string  "contact_zip",   null: false
-    t.string  "contact_state", null: false
-    t.string  "contact_name",  null: false
-    t.string  "contact_email", null: false
-    t.string  "contact_phone", null: false
+    t.integer "petfinder_id",    null: false
+    t.string  "name",            null: false
+    t.string  "animal",          null: false
+    t.text    "description",     null: false
+    t.string  "age",             null: false
+    t.string  "size",            null: false
+    t.string  "gender",          null: false
+    t.string  "breed",           null: false
+    t.string  "altered",         null: false
+    t.string  "shots",           null: false
+    t.string  "special_needs",   null: false
+    t.string  "contact_city",    null: false
+    t.string  "contact_zip",     null: false
+    t.string  "contact_state",   null: false
+    t.string  "contact_address", null: false
+    t.string  "contact_email",   null: false
+    t.string  "contact_phone",   null: false
   end
 
   add_index "pets", ["age"], name: "index_pets_on_age", using: :btree

@@ -15,7 +15,7 @@ class CreatePets < ActiveRecord::Migration
     	t.string :contact_city, null: false, index: true
     	t.string :contact_zip, null: false, index: true
     	t.string :contact_state, null: false, index: true
-    	t.string :contact_name, null: false
+    	t.string :contact_address, null: false
     	t.string :contact_email, null: false
     	t.string :contact_phone, null: false
     end
