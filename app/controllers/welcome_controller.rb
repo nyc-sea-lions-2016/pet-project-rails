@@ -42,7 +42,7 @@ class WelcomeController < ApplicationController
           contact_city = pet_contact.has_key?("city") ? pet_contact["city"]["$t"] : ''
           contact_zip = pet_contact.has_key?("zip") ? pet_contact["zip"]["$t"] : ''
           contact_state = pet_contact.has_key?("state") ? pet_contact["state"]["$t"] : ''
-          contact_name = pet_contact.has_key?("name") ? pet_contact["name"]["$t"] : ''
+          contact_address = pet_contact.has_key?("address1") ? pet_contact["address1"]["$t"] : ''
           contact_email = pet_contact.has_key?("email") ? pet_contact["email"]["$t"] : ''
           contact_phone = pet_contact.has_key?("phone") ? pet_contact["phone"]["$t"] : ''
 
@@ -69,9 +69,14 @@ class WelcomeController < ApplicationController
             breed: breed,
             altered: altered,
             shots: shots,
-            special_needs: special_needs
+            special_needs: special_needs,
+            contact_email: contact_email,
+            contact_phone: contact_phone,
+            contact_address: contact_address,
+            contact_city: contact_city,
+            contact_state: contact_state,
+            contact_zip: contact_zip
           })
-
         photos.map! do |photo|
           Photo.new({url: photo, pet_id: potential_pet.id})
         end
