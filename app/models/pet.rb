@@ -4,7 +4,7 @@ class Pet < ActiveRecord::Base
 	has_many :users, through: :favorites
 	after_initialize :init
 
-	validates :petfinder_id, :name, :animal, :description, :age, :size, :gender, :breed, :contact_city, :contact_zip, :contact_state, :contact_name, :contact_email, :contact_phone, { presence: true }
+	validates :petfinder_id, :name, :animal, :description, :age, :size, :gender, :breed, :contact_city, :contact_zip, :contact_state, :contact_address, :contact_email, :contact_phone, { presence: true }
 
 
 # init validates everything but petfinder_id & animal(type) & images
@@ -19,7 +19,7 @@ class Pet < ActiveRecord::Base
 		self.contact_city ||= "No contact city on record"
 		self.contact_state ||= "No contact state on record"
 		self.contact_zip ||= "No contact zip code on record"
-		self.contact_name ||= "No contact name on record"
+		self.contact_address ||= "No contact name on record"
 		self.contact_email ||= "No contact email address on record"
 		self.contact_phone ||= "No contact phone number on record"
 	end
