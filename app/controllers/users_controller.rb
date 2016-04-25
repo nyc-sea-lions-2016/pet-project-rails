@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def create
+
+  end
+
   def edit
     @user = User.find(current_user)
   end
