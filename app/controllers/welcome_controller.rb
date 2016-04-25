@@ -103,7 +103,6 @@ class WelcomeController < ApplicationController
       pets << pet
     end
     pets
-    p pets
   end
 
   def get_options(options_obj)
