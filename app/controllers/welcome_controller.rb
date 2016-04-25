@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   def index
     potential_pet = pet_finder_request
     status_code = potential_pet["petfinder"]["header"]["status"]["code"]["$t"]
+    p potential_pet
 
     if status_code == "100"
 
@@ -33,8 +34,8 @@ class WelcomeController < ApplicationController
 
       #OPTIONS
       options = get_options(pet["options"]["option"])
-        altered = options.include?('altered')? true : false
-        shots = options.include?('hasShots')? true : false
+        altered = options.include?('altered')? "true" : "false"
+        shots = options.include?('hasShots')? "true" : "false"
         special_needs = options.select{|option| option != 'altered' && option != 'hasShots'}.join(', ')
 
       #LOCATION
@@ -58,10 +59,11 @@ class WelcomeController < ApplicationController
           size: size,
           gender: gender,
           breed: breed,
-          altered: altered,
+          altered: altered.to_s,
           shots: shots,
           special_needs: special_needs
         })
+      p @potential_pet.altered
       @photo = Photo.new({url: photo_url, pet_id: @potential_pet.id})
     else
       error_msg = potential_pet["petfinder"]["header"]["status"]["message"]
