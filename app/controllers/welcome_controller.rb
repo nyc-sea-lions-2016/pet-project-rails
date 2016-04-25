@@ -3,7 +3,6 @@ class WelcomeController < ApplicationController
   def index
     potential_pet = pet_finder_request
     status_code = potential_pet["petfinder"]["header"]["status"]["code"]["$t"]
-    p potential_pet
 
     if status_code == "100"
 
