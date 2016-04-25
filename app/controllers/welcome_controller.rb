@@ -82,6 +82,10 @@ class WelcomeController < ApplicationController
 
   end
 
+  def one
+
+  end
+
   private
 
   CURRENT_USER = User.first
