@@ -9,8 +9,8 @@ class CreatePets < ActiveRecord::Migration
     	t.string :size, null: false, index: true
     	t.string :gender, null: false, index: true
     	t.string :breed, null: false, index: true
-    	t.boolean :altered, null: false
-    	t.boolean :shots, null: false
+    	t.string :altered, null: false
+    	t.string :shots, null: false
     	t.string :special_needs, null: false
     	t.string :contact_city, null: false, index: true
     	t.string :contact_zip, null: false, index: true
