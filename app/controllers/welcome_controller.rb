@@ -47,7 +47,18 @@ class WelcomeController < ApplicationController
         contact_phone = pet_contact.has_key?("phone") ? pet_contact["phone"]["$t"] : ''
 
       #FIRST PHOTO
-      photo_url = pet.has_key?("media") && pet["media"].has_key?("photos") ? pet["media"]["photos"]["photo"][3]['$t'] : 'http://www.iconsdownload.net/icons/256/1588-paw-print-outline-icon.png'
+      @photos = []
+      if pet.has_key?("media") && pet["media"].has_key?("photos")
+        pet["media"]["photos"]["photo"].each do |photo|
+          if photo["@size"] == 'pn'
+            @photos << photo['$t']
+          end
+        end
+      else
+        @photos << 'http://www.iconsdownload.net/icons/256/1588-paw-print-outline-icon.png'
+      end
+
+      # photo_url = pet.has_key?("media") && pet["media"].has_key?("photos") ? pet["media"]["photos"]["photo"][3]['$t'] : 'http://www.iconsdownload.net/icons/256/1588-paw-print-outline-icon.png'
 
       @potential_pet = Pet.new({
           petfinder_id: petfinder_id,
@@ -62,7 +73,11 @@ class WelcomeController < ApplicationController
           shots: shots,
           special_needs: special_needs
         })
-      @photo = Photo.new({url: photo_url, pet_id: @potential_pet.id})
+
+      @photos.map! do |photo|
+        Photo.new({url: photo, pet_id: @potential_pet.id})
+      end
+
     else
       error_msg = potential_pet["petfinder"]["header"]["status"]["message"]
     end
