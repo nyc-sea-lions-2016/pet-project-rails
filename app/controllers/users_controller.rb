@@ -5,9 +5,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
     response = JSON.parse(request.body.string)
-    User.update(current_user.id, )
+    @user = User.find(current_user.id)
+    if response["location"]
+      @user.update(preferred_location: response["location"])
+    end
+    if response["searchRadius"]
+      @user.update(preferred_search_radius: response.preferred_search_radius)
+    end
   end
 
   def show
