@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 
   def create
     response = JSON.parse(request.body.string)
-    binding.pry
     @user = User.find_or_create_by(facebook_id: response["user"]["credentials"]["userId"])
   end
 
