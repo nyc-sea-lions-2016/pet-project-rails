@@ -17,7 +17,7 @@
 #   contact_city: "New York City",
 #   contact_state: "NY",
 #   contact_zip: "11111",
-#   contact_name: "FJ",
+#   contact_address: "48 Wall Street",
 #   contact_email: "fj@example.com",
 #   contact_phone: '1234567891',
 # )

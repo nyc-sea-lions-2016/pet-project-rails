@@ -2,12 +2,14 @@ class PetsController < ApplicationController
 
 	def create
 		response = JSON.parse(request.body.string)
-		photo = response["pet"]["url"]
-		response["pet"].delete('url')
+		photos = response["pet"]["photos"]
+		response["pet"].delete('photos')
 		@pet = Pet.new(response["pet"])
 		if @pet.save
-			@photo = Photo.create({url: photo, pet_id: @pet.id})
 			favorite = Favorite.create(pet_id: @pet.id, user_id: current_user.id)
+			photos.each do |photo|
+				photo = Photo.create({url: photo["url"], pet_id: @pet.id})
+			end
 		end
 	end
 
