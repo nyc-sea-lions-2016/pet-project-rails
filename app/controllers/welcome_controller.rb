@@ -33,8 +33,8 @@ class WelcomeController < ApplicationController
 
       #OPTIONS
       options = get_options(pet["options"]["option"])
-        altered = options.include?('altered')? true : false
-        shots = options.include?('hasShots')? true : false
+        altered = options.include?('altered')? "true" : "false"
+        shots = options.include?('hasShots')? "true" : "false"
         special_needs = options.select{|option| option != 'altered' && option != 'hasShots'}.join(', ')
 
       #LOCATION
