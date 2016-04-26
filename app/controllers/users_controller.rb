@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @pets = User.find(CURRENT_USER).pets
+    @pets = User.find(CURRENT_USER.id).pets
   end
 
 end
