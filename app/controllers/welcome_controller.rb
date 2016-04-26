@@ -1,11 +1,48 @@
 class WelcomeController < ApplicationController
 
   def index
-    pets = pet_finder_request
+    pets = pet_finder_request(25)
+    @pets = create_pet_objects(pets)
+  end
+
+  def one
+    pets = pet_finder_request(1)
+    @pets = create_pet_objects(pets)
+  end
+
+  private
+
+  CURRENT_USER = User.first
+  KEY = ENV['PET_FINDER_KEY']
+  DEFAULT_LOCATION = CURRENT_USER.preferred_location || '11217'
+  OUTPUT = 'full'
+  FORMAT = 'json'
+  REQUEST_URL = 'http://api.petfinder.com/pet.getRandom?key=' + KEY + '&location=' + DEFAULT_LOCATION + '&output=' + OUTPUT + '&format=' + FORMAT
+
+  def pet_finder_request(this_many)
+    pets = []
+    this_many.times do
+      pet = HTTParty.get(REQUEST_URL)
+      pets << pet
+    end
+    pets
+  end
+
+  def get_options(options_obj)
+    options = []
+    if options_obj && options_obj.length > 1
+      options_obj.each do |option|
+        options << option['$t']
+      end
+    elsif options_obj && options_obj.length == 1
+      options << options_obj['$t']
+    end
+    options
+  end
+
+  def create_pet_objects(pets)
     @pets = []
-
       pets.each do |potential_pet|
-
         pet = potential_pet["petfinder"]["pet"]
 
         #BASIC INFO
@@ -33,8 +70,8 @@ class WelcomeController < ApplicationController
 
         #OPTIONS
         options = get_options(pet["options"]["option"])
-          altered = options.include?('altered')? true : false
-          shots = options.include?('hasShots')? true : false
+          altered = options.include?('altered')? "true" : "false"
+          shots = options.include?('hasShots')? "true" : "false"
           special_needs = options.select{|option| option != 'altered' && option != 'hasShots'}.join(', ')
 
         #LOCATION
@@ -42,7 +79,7 @@ class WelcomeController < ApplicationController
           contact_city = pet_contact.has_key?("city") ? pet_contact["city"]["$t"] : ''
           contact_zip = pet_contact.has_key?("zip") ? pet_contact["zip"]["$t"] : ''
           contact_state = pet_contact.has_key?("state") ? pet_contact["state"]["$t"] : ''
-          contact_address = pet_contact.has_key?("address1") ? pet_contact["address1"]["$t"] : ''
+          contact_name = pet_contact.has_key?("name") ? pet_contact["name"]["$t"] : ''
           contact_email = pet_contact.has_key?("email") ? pet_contact["email"]["$t"] : ''
           contact_phone = pet_contact.has_key?("phone") ? pet_contact["phone"]["$t"] : ''
 
@@ -69,52 +106,17 @@ class WelcomeController < ApplicationController
             breed: breed,
             altered: altered,
             shots: shots,
-            special_needs: special_needs,
-            contact_email: contact_email,
-            contact_phone: contact_phone,
-            contact_address: contact_address,
-            contact_city: contact_city,
-            contact_state: contact_state,
-            contact_zip: contact_zip
+            special_needs: special_needs
           })
+
         photos.map! do |photo|
           Photo.new({url: photo, pet_id: potential_pet.id})
         end
-
         @pets << {pet: potential_pet, photos: photos}
-
       end
 
-  end
+      @pets
 
-  private
-
-  CURRENT_USER = User.first
-  KEY = ENV['PET_FINDER_KEY']
-  DEFAULT_LOCATION = CURRENT_USER.preferred_location || '11217'
-  OUTPUT = 'full'
-  FORMAT = 'json'
-  REQUEST_URL = 'http://api.petfinder.com/pet.getRandom?key=' + KEY + '&location=' + DEFAULT_LOCATION + '&output=' + OUTPUT + '&format=' + FORMAT
-
-  def pet_finder_request
-    pets = []
-    25.times do
-      pet = HTTParty.get(REQUEST_URL)
-      pets << pet
-    end
-    pets
-  end
-
-  def get_options(options_obj)
-    options = []
-    if options_obj && options_obj.length > 1
-      options_obj.each do |option|
-        options << option['$t']
-      end
-    elsif options_obj && options_obj.length == 1
-      options << options_obj['$t']
-    end
-    options
   end
 
 end
