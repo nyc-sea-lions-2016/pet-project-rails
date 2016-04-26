@@ -19,7 +19,7 @@ class Pet < ActiveRecord::Base
 		self.contact_city ||= "No contact city on record"
 		self.contact_state ||= "No contact state on record"
 		self.contact_zip ||= "No contact zip code on record"
-		self.contact_address ||= "No contact name on record"
+		self.contact_address ||= "No contact address on record"
 		self.contact_email ||= "No contact email address on record"
 		self.contact_phone ||= "No contact phone number on record"
 	end
