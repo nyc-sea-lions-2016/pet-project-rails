@@ -15,18 +15,18 @@ class SheltersController < ApplicationController
 
   def zip_code
     response = JSON.parse(request.body.string)
-    # response["location"]["postalCode"]
+    binding.pry
+    get_shelters_request(request["location"]["postalCode"])
   end
 
   private
 
   KEY = ENV['PET_FINDER_KEY']
-  DEFAULT_LOCATION = '10005'
   OUTPUT = 'full'
   FORMAT = 'json'
 
-  def get_shelters_request
-    request_url = 'http://api.petfinder.com/shelter.find?key=' + KEY + '&location=' + DEFAULT_LOCATION + '&output=' + OUTPUT + '&format=' + FORMAT
+  def get_shelters_request(zipcode = '10005')
+    request_url = 'http://api.petfinder.com/shelter.find?key=' + KEY + '&location=' + zipcode + '&output=' + OUTPUT + '&format=' + FORMAT
     HTTParty.get(request_url)
   end
 
