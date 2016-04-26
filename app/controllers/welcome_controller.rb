@@ -43,7 +43,6 @@ class WelcomeController < ApplicationController
   def create_pet_objects(pets)
     @pets = []
       pets.each do |potential_pet|
-
         pet = potential_pet["petfinder"]["pet"]
 
         #BASIC INFO
@@ -74,7 +73,6 @@ class WelcomeController < ApplicationController
           altered = options.include?('altered')? "true" : "false"
           shots = options.include?('hasShots')? "true" : "false"
           special_needs = options.select{|option| option != 'altered' && option != 'hasShots'}.join(', ')
-          binding.pry
 
         #LOCATION
         pet_contact = pet["contact"]
