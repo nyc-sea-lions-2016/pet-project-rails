@@ -17,11 +17,16 @@ class PetsController < ApplicationController
 		@pet = Pet.find(params[:id])
 	end
 
-	def delete
-		@pet = Pet.find(params[:id])
-		@pet.delete
-		delete_favorites(params[:id], current_user.id)
-		delete_photos(params[:id])
+	def destroy
+		pet_id = JSON.parse(request.body.string)["petID"]
+		pet = Pet.find(params[:id])
+		if Favorite.where(pet_id: pet_id).length > 1
+			delete_favorites(pet_id, current_user.id)
+		else
+			pet.destroy
+			delete_favorites(pet_id, current_user.id)
+			delete_photos(pet_id)
+		end
 	end
 
 	private
@@ -31,9 +36,7 @@ class PetsController < ApplicationController
 	end
 
 	def delete_photos(pet_id)
-		unless Favorite.find_by(pet_id: pet_id)
-			Photo.where(pet_id: pet_id).destroy_all
-		end
+		Photo.where(pet_id: pet_id).destroy_all
 	end
 
 end

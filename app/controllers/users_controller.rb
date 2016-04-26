@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  # CURRENT_USER = User.first
-
   def create
     response = JSON.parse(request.body.string)
     @user = User.find_or_create_by(facebook_id: response["user"]["credentials"]["userId"])
