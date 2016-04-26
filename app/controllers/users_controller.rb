@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
 
+  CURRENT_USER = User.first
+
   def create
     response = JSON.parse(request.body.string)
     @user = User.find_or_create_by(facebook_id: response["user"]["credentials"]["userId"])
   end
 
   def edit
-    @user = User.find(current_user)
+    @user = User.find_by(id: CURRENT_USER.id)
   end
 
   def update
@@ -21,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @pets = User.find(current_user).pets
+    @pets = User.find(CURRENT_USER).pets
   end
 
 end
