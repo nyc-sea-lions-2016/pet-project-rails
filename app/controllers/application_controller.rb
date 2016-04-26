@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_pet
 
   def current_user
-    User.first
+    User.find_by(id: session[:user_id])
   end
 
   def current_pet
