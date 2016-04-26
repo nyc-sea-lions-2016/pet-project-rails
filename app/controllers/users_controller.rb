@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   def create
     response = JSON.parse(request.body.string)
     @user = User.find_or_create_by(facebook_id: response["user"]["credentials"]["userId"])
+    @user.preferred_location = response["user"]["preferred_location"]
+    @user.save
     session[:user_id] = @user.id
   end
 
