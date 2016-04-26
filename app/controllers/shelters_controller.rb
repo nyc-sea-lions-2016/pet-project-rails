@@ -15,7 +15,7 @@ class SheltersController < ApplicationController
 
   def zip_code
     response = JSON.parse(request.body.string)
-    binding.pry
+    # response["location"]["postalCode"]
   end
 
   private
