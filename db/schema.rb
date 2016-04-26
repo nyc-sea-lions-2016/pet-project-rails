@@ -93,11 +93,12 @@ ActiveRecord::Schema.define(version: 20160424142809) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                    null: false
+    t.string   "name"
     t.string   "preferred_location"
     t.integer  "preferred_search_radius"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "facebook_id",             limit: 8, null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
 end
