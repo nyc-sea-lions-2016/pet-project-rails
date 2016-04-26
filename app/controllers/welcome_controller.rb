@@ -77,12 +77,11 @@ class WelcomeController < ApplicationController
             contact_state: contact_state,
             contact_zip: contact_zip
           })
+
         photos.map! do |photo|
           Photo.new({url: photo, pet_id: potential_pet.id})
         end
-
         @pets << {pet: potential_pet, photos: photos}
-
       end
 
   end
