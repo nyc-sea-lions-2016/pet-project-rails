@@ -13,6 +13,11 @@ class SheltersController < ApplicationController
     @shelters
   end
 
+  def zip_code
+    response = JSON.parse(request.body.string)
+    binding.pry
+  end
+
   private
 
   KEY = ENV['PET_FINDER_KEY']

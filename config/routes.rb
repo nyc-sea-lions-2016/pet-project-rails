@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :show, :edit, :update]
   resources :favorites, only: [:index, :create, :delete]
   resources :shelters, only: [:index]
+  get '/shelters/zip_code'
 
 end
