@@ -1,28 +1,26 @@
 class WelcomeController < ApplicationController
 
   def index
-    pets = pet_finder_request(25)
+    pets = pet_finder_request(25, current_user.preferred_location)
     @pets = create_pet_objects(pets)
   end
 
   def one
-    pets = pet_finder_request(1)
+    pets = pet_finder_request(1, current_user.preferred_location)
     @pets = create_pet_objects(pets)
   end
 
   private
 
-  CURRENT_USER = User.first
   KEY = ENV['PET_FINDER_KEY']
-  DEFAULT_LOCATION = CURRENT_USER.preferred_location || '11217'
   OUTPUT = 'full'
   FORMAT = 'json'
-  REQUEST_URL = 'http://api.petfinder.com/pet.getRandom?key=' + KEY + '&location=' + DEFAULT_LOCATION + '&output=' + OUTPUT + '&format=' + FORMAT
 
-  def pet_finder_request(this_many)
+  def pet_finder_request(this_many, zip_code = '11217')
+    request_url = 'http://api.petfinder.com/pet.getRandom?key=' + KEY + '&location=' + zip_code + '&output=' + OUTPUT + '&format=' + FORMAT
     pets = []
     this_many.times do
-      pet = HTTParty.get(REQUEST_URL)
+      pet = HTTParty.get(request_url)
       pets << pet
     end
     pets
