@@ -1,10 +1,10 @@
-FactoryGirl.define do
+APP_ANIMALS = ['cat', 'dog', 'reptile', 'smallfurry', '']
+ALL_ANIMALS = ['barnyard', 'bird', 'cat', 'dog', 'horse', 'pig', 'reptile', 'smallfurry']
+SIZE = ['S','M','L','XL']
+GENDER = ['M','F']
+TF = ['true','false']
 
-  APP_ANIMALS = ['cat', 'dog', 'reptile', 'smallfurry', '']
-  ALL_ANIMALS = ['barnyard', 'bird', 'cat', 'dog', 'horse', 'pig', 'reptile', 'smallfurry']
-  SIZE = ['S','M','L','XL']
-  GENDER = ['M','F']
-  TF = ['true','false']
+FactoryGirl.define do
 
   factory :user do
     name {Faker::Name.name}
