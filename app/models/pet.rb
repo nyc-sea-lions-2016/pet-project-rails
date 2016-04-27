@@ -23,4 +23,8 @@ class Pet < ActiveRecord::Base
 		self.contact_email ||= "No contact email address on record"
 		self.contact_phone ||= "No contact phone number on record"
 	end
+
+	def find_phone_number(description)
+		
+	end
 end
