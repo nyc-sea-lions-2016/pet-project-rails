@@ -64,23 +64,6 @@ ActiveRecord::Schema.define(version: 20160424142809) do
 
   add_index "photos", ["pet_id"], name: "index_photos_on_pet_id", using: :btree
 
-  create_table "preferences", force: :cascade do |t|
-    t.string   "preference_desc"
-    t.string   "category"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "preferences_users", force: :cascade do |t|
-    t.integer  "user_id",       null: false
-    t.integer  "preference_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "preferences_users", ["preference_id"], name: "index_preferences_users_on_preference_id", using: :btree
-  add_index "preferences_users", ["user_id"], name: "index_preferences_users_on_user_id", using: :btree
-
   create_table "shelters", force: :cascade do |t|
     t.decimal "longitude"
     t.decimal "latitude"
@@ -96,10 +79,10 @@ ActiveRecord::Schema.define(version: 20160424142809) do
     t.string   "name"
     t.string   "email"
     t.string   "preferred_location"
-    t.integer  "preferred_search_radius"
     t.decimal  "facebook_id",             null: false
     t.string   "token"
     t.string   "profile_pic"
+    t.string   "animal_preference"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end

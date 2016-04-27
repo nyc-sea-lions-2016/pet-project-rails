@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Favorite, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it 'exists' do
+    expect(Favorite.new).to be_a Favorite
+  end
+
 end

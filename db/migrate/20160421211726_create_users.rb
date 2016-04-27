@@ -4,10 +4,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :preferred_location
-      t.integer :preferred_search_radius
-      t.decimal :facebook_id, null: false
+      t.decimal :facebook_id, null: false, limit: 8
       t.string :token
       t.string :profile_pic
+      t.string :animal_preference
 
       t.timestamps null: false
     end
