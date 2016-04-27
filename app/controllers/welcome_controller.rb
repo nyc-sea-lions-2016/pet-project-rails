@@ -19,8 +19,14 @@ class WelcomeController < ApplicationController
     request_url = 'http://api.petfinder.com/pet.getRandom?key=' + KEY + '&output=full&format=json&location='
     pets = []
     this_many.times do
-      pet = HTTParty.get(request_url + zip_code + animal)
-      pets << pet
+      s = request_url + zip_code + animal
+      puts "Loading #{s}"
+      pet = HTTParty.get(s)
+      if pet.code == 200
+        pets << pet
+      else
+        puts "Failed"
+      end
     end
     pets
   end
@@ -41,9 +47,10 @@ class WelcomeController < ApplicationController
     @pets = []
       pets.each do |potential_pet|
         pet = potential_pet["petfinder"]["pet"]
+        # ap pet
 
         #BASIC INFO
-        petfinder_id =  pet["id"]["$t"]
+        petfinder_id = pet.has_key?("id") ? pet["id"]["$t"] : ''
         name = pet.has_key?("name") ? pet["name"]["$t"] : ''
         animal = pet.has_key?("animal") ? pet["animal"]['$t'] : ''
         description = pet.has_key?("description") ? pet["description"]["$t"] : ''
