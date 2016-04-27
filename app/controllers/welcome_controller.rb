@@ -77,9 +77,17 @@ class WelcomeController < ApplicationController
           contact_city = pet_contact.has_key?("city") ? pet_contact["city"]["$t"] : ''
           contact_zip = pet_contact.has_key?("zip") ? pet_contact["zip"]["$t"] : ''
           contact_state = pet_contact.has_key?("state") ? pet_contact["state"]["$t"] : ''
-          contact_name = pet_contact.has_key?("name") ? pet_contact["name"]["$t"] : ''
           contact_email = pet_contact.has_key?("email") ? pet_contact["email"]["$t"] : ''
           contact_phone = pet_contact.has_key?("phone") ? pet_contact["phone"]["$t"] : ''
+          if pet_contact.has_key?("address1")
+            if pet_contact["address1"] != {}
+              contact_address = pet_contact["address"]
+            else
+              contact_address = ''
+            end
+          else
+            contact_address = ''
+          end
 
         #ALL PHOTOS
         photos = []
@@ -94,18 +102,24 @@ class WelcomeController < ApplicationController
         end
 
         potential_pet = Pet.new({
-            petfinder_id: petfinder_id,
-            name: name,
-            animal: animal,
-            description: description,
-            age: age,
-            size: size,
-            gender: gender,
-            breed: breed,
-            altered: altered,
-            shots: shots,
-            special_needs: special_needs
-          })
+          petfinder_id: petfinder_id,
+          name: name,
+          animal: animal,
+          description: description,
+          age: age,
+          size: size,
+          gender: gender,
+          breed: breed,
+          altered: altered,
+          shots: shots,
+          special_needs: special_needs,
+          contact_city: contact_city,
+          contact_zip: contact_zip,
+          contact_state: contact_state,
+          contact_email: contact_email,
+          contact_phone: contact_phone,
+          contact_address: contact_address
+        })
 
         photos.map! do |photo|
           Photo.new({url: photo, pet_id: potential_pet.id})
