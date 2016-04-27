@@ -20,7 +20,6 @@ class WelcomeController < ApplicationController
     pets = []
     this_many.times do
       s = request_url + zip_code + animal
-      puts "Loading #{s}"
       pet = HTTParty.get(s)
       if pet.code == 200
         pets << pet
