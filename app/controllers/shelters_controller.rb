@@ -1,7 +1,7 @@
 class SheltersController < ApplicationController
 
   def index
-    shelters_list = get_shelters_request
+    shelters_list = get_shelters_request(current_user.preferred_location)
 
     @shelters = []
     shelters_list["petfinder"]["shelters"]["shelter"].each do |shelter|
@@ -13,19 +13,13 @@ class SheltersController < ApplicationController
     @shelters
   end
 
-  def zip_code
-    response = JSON.parse(request.body.string)
-    binding.pry
-    get_shelters_request(request["location"]["postalCode"])
-  end
-
   private
 
   KEY = ENV['PET_FINDER_KEY']
   OUTPUT = 'full'
   FORMAT = 'json'
 
-  def get_shelters_request(zipcode = '10005')
+  def get_shelters_request(zipcode = '90210')
     request_url = 'http://api.petfinder.com/shelter.find?key=' + KEY + '&location=' + zipcode + '&output=' + OUTPUT + '&format=' + FORMAT
     HTTParty.get(request_url)
   end
