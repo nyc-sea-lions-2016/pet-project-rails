@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :preferred_location
-      t.integer :preferred_search_radius
+      t.string :animal_preference
       t.integer :facebook_id, null: false, limit: 8
 
       t.timestamps null: false
