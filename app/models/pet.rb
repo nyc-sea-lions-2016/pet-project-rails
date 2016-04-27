@@ -19,8 +19,8 @@ class Pet < ActiveRecord::Base
 		self.contact_state ||= "No contact state on record"
 		self.contact_zip ||= "No contact zip code on record"
 		self.contact_address ||= "No contact address on record"
-		self.contact_email ||= (find_email(self.description) || "No contact email address on record")
-		self.contact_phone ||= (find_phone_number(self.description) || "No contact phone number on record")
+		self.contact_email ||= "No contact email address on record"
+		self.contact_phone ||= "No contact phone number on record"
 	end
 
 	def find_phone_number(description)
