@@ -12,17 +12,15 @@ class WelcomeController < ApplicationController
 
   private
 
-  CURRENT_USER = User.first
   KEY = ENV['PET_FINDER_KEY']
-  DEFAULT_LOCATION = CURRENT_USER.preferred_location || '11217'
-  OUTPUT = 'full'
-  FORMAT = 'json'
-  REQUEST_URL = 'http://api.petfinder.com/pet.getRandom?key=' + KEY + '&location=' + DEFAULT_LOCATION + '&output=' + OUTPUT + '&format=' + FORMAT
+  REQUEST_URL = 'http://api.petfinder.com/pet.getRandom?key=' + KEY + '&output=full&format=json&location='
 
   def pet_finder_request(this_many)
+    animal = '&animal=' + (current_user.animal_preference || '')
+    location = current_user.preferred_location || '11217'
     pets = []
     this_many.times do
-      pet = HTTParty.get(REQUEST_URL)
+      pet = HTTParty.get(REQUEST_URL + location + animal)
       pets << pet
     end
     pets
