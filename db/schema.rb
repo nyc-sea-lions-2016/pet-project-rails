@@ -79,12 +79,12 @@ ActiveRecord::Schema.define(version: 20160424142809) do
     t.string   "name"
     t.string   "email"
     t.string   "preferred_location"
-    t.decimal  "facebook_id",             null: false
+    t.decimal  "facebook_id",        null: false
     t.string   "token"
     t.string   "profile_pic"
     t.string   "animal_preference"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
 end
