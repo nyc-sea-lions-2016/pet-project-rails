@@ -77,11 +77,14 @@ ActiveRecord::Schema.define(version: 20160424142809) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
+    t.string   "email"
     t.string   "preferred_location"
+    t.decimal  "facebook_id",        null: false
+    t.string   "token"
+    t.string   "profile_pic"
     t.string   "animal_preference"
-    t.integer  "facebook_id",        limit: 8, null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
 end
