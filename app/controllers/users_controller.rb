@@ -2,13 +2,18 @@ class UsersController < ApplicationController
 
   def create
     response = JSON.parse(request.body.string)
-    @user = User.find_or_create_by(facebook_id: response["user"]["credentials"]["userId"])
-    @user.preferred_location = response["user"]["preferred_location"]
-    @user.token = response["user"]["credentials"]["token"]
-    @user.profile_pic = response["user"]["photo"]["url"]
-    @user.name = response["user"]["info"]["name"]
-    @user.email = response["user"]["info"]["email"]
-    @user.save
+    facebook_id = response["user"]["credentials"]["userId"]
+    profile_pic = response["user"]["photo"]["url"]
+    token = response["user"]["credentials"]["token"]
+    name = response["user"]["info"]["name"]
+    email = response["user"]["info"]["email"]
+    preferred_location = response["user"]["preferred_location"]
+    @user = User.find_by(facebook_id: response["user"]["credentials"]["userId"])
+    if @user
+      @user.preferred_location = preferred_location
+    else
+      @user = User.create(facebook_id: facebook_id, profile_pic: profile_pic, token: token, name: name, email: email, preferred_location: preferred_location)
+    end
     session[:user_id] = @user.id
   end
 
