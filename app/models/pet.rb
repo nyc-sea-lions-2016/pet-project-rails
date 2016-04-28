@@ -5,6 +5,7 @@ class Pet < ActiveRecord::Base
 
 	after_initialize :init
 	after_initialize :remove_extra_characters_from_name
+	before_save :verify_listed_phone_number
 
 	validates :petfinder_id, :name, :animal, :description, :age, :size, :gender, :breed, :contact_city, :contact_zip, :contact_state, :contact_address, :contact_email, :contact_phone, { presence: true }
 
@@ -34,6 +35,14 @@ class Pet < ActiveRecord::Base
 	def find_phone_number(string)
 		phone_number = string.match(/\d{3}-\d{3}-\d{4}/).to_s
 		phone_number == '' ? false : phone_number
+	end
+
+	def verify_listed_phone_number
+		listed_phone = self.contact_phone.gsub(/\D/,'')
+		if listed_phone.match(/((?!\d{10}).)*/) || listed_phone != ''
+      self.description += "phone number: " + self.contact_phone
+      self.contact_phone = ''
+    end
 	end
 
 	def find_email(string)
