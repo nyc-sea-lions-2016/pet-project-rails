@@ -6,10 +6,10 @@ We built Next Best Friend in April 2016 to better connect these pets with potent
 
 Next Best Friend is a React Native app with a Ruby on Rails backend API. The app incorporates a "Tinder swipe" functionality and links into the Google Maps and PetFinder APIs. Users can "favorite" animals they'd like to look at later, set their preferred location, filter by animal type, call or email the organization linked to each animal, and see a map of nearby animal shelters.
 
-<h5>TECHNOLOGIES</h5>
+TECHNOLOGIES:
 Ruby on Rails, React Native, PostgreSQL, PetFinder API, Google Maps API, RSPEC
 
-## FUNCTIONALITY:
+FUNCTIONALITY:
 * User by default sees one animal when they open the app (name and image of animal only)
 * User by default should only see animals within a certain radius of where they are
 * User should be able to swipe left or right on an image of a pet
@@ -22,6 +22,6 @@ Ruby on Rails, React Native, PostgreSQL, PetFinder API, Google Maps API, RSPEC
 * User can call or email a shelter directly from the app
 * User can get information on how to actually adopt a pet (paperwork, etc)
 
-- [Link to React Native Front End Github](https://github.com/nyc-sea-lions-2016/pet-project-react-native)
-- [Link to Blog Post about building the app](http://alyssaransbury.herokuapp.com/projects/nextbestfriend)
+- Link to React Native Front End Github: https://github.com/nyc-sea-lions-2016/pet-project-react-native
+- Link to Blog Post about building the app: http://alyssaransbury.herokuapp.com/projects/nextbestfriend
 
