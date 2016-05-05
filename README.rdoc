@@ -1,6 +1,15 @@
-== Working Title: PET PROJECT 
+# Next Best Friend (React Native Front End)
 
-User Stories:
+OVER 7.5 MILLION DOGS AND CATS ENTER SHELTERS NATIONWIDE EVERY YEAR. OF THESE, APPROXIMATELY 30-40% ARE EUTHANIZED.
+
+We built Next Best Friend in April 2016 to better connect these pets with potential new owners.
+
+Next Best Friend is a React Native app with a Ruby on Rails backend API. The app incorporates a "Tinder swipe" functionality and links into the Google Maps and PetFinder APIs. Users can "favorite" animals they'd like to look at later, set their preferred location, filter by animal type, call or email the organization linked to each animal, and see a map of nearby animal shelters.
+
+## TECHNOLOGIES
+Ruby on Rails, React Native, PostgreSQL, PetFinder API, Google Maps API, RSPEC
+
+## FUNCTIONALITY:
 * User by default sees one animal when they open the app (name and image of animal only)
 * User by default should only see animals within a certain radius of where they are
 * User should be able to swipe left or right on an image of a pet
@@ -13,31 +22,6 @@ User Stories:
 * User can call or email a shelter directly from the app
 * User can get information on how to actually adopt a pet (paperwork, etc)
 
-Goals:
-* Show users images of adoptable pets
-* Encourage user to actually adopt the animal within a short time of using the app
-* Become the one stop app for animal adoption
-
-Title Ideas:
-* Pet Finder
-* Next Best Friend
-* New Best Friend
-* Petflix & Chill
-
-Routes:
-* Homepage 
-* Settings (User edit)
-* Favorites (User show)
-* Details (Pet show)
-* POST -- swipe right (Pet create)
-* POST -- delete favorite (Pet delete)
-
-Models:
-* User [:create, :edit, :delete, :show]
-* Pet 
-
-Schema image:
-![pet_app_schema](/app/assets/images/Pet_schema3.png "Schema design")
-
-
+- [Link to React Native Front End Github](https://github.com/nyc-sea-lions-2016/pet-project-react-native)
+- [Link to Blog Post about building the app](http://alyssaransbury.herokuapp.com/projects/nextbestfriend)
 
